@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { UserEntity } from 'src/app/domain/entities/user/user-entity';
+import { Injectable } from "@angular/core";
+import { UserEntity } from "src/app/domain/entities/user/user-entity";
 
-const credentialsKey = 'credentials';
+const credentialsKey = "credentials";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
   private usuario!: UserEntity;
 
   constructor() {
-    this.usuario = JSON.parse(localStorage.getItem(credentialsKey) || '{}');
+    this.usuario = JSON.parse(localStorage.getItem(credentialsKey) || "{}");
   }
 
   isAuthenticated(): boolean {
