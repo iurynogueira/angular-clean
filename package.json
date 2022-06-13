@@ -9,9 +9,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watchAll"
+    "test": "jest -i",
+    "test:coverage": "jest -i --coverage",
+    "test:watch": "jest -i --watchAll"
   },
   "private": true,
   "dependencies": {
