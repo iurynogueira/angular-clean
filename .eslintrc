@@ -1,0 +1,10 @@
+{
+  "extends": ["airbnb-base"],
+  "env": {
+    "es2021": true,
+    "browser": true
+  },
+  "rules": {
+    "no-console": "off"
+  }
+}

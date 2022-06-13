@@ -106,3 +106,5 @@ dist
 # Angular
 .angular
 
+# VSCode recommendation
+.vscode

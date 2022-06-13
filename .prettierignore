@@ -48,3 +48,5 @@ jspm_packages/
 # Angular
 .angular
 
+# VSCode recommendation
+.vscode
