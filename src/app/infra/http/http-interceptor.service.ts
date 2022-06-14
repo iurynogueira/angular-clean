@@ -4,15 +4,15 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-} from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
-import { catchError, Observable, throwError } from "rxjs";
-import { ValidationError } from "ts.validator.fluent/dist";
-import { AuthService } from "../auth/auth.service";
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { catchError, Observable, throwError } from 'rxjs';
+import { ValidationError } from 'ts.validator.fluent/dist';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class HttpInterceptorService implements HttpInterceptor {
   constructor(private router: Router, private authService: AuthService) {}
@@ -44,22 +44,22 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     switch (response.status) {
       case 400:
-        console.log("Error", response.status);
+        console.log('Error', response.status);
         break;
       case 401:
-        this.router.navigateByUrl("/login", { replaceUrl: true });
+        this.router.navigateByUrl('/login', { replaceUrl: true });
         break;
       case 404:
         errs.push(
           new ValidationError(
-            "",
-            "",
-            "<strong>404</strong>: O recurso requisitado não existe."
+            '',
+            '',
+            '<strong>404</strong>: O recurso requisitado não existe.'
           )
         );
         break;
       case 500:
-        console.log("Ocorreu um erro inesperado de servidor.");
+        console.log('Ocorreu um erro inesperado de servidor.');
         break;
     }
 
