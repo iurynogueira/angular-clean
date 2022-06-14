@@ -44,7 +44,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     switch (response.status) {
       case 400:
-        console.log('Error', response.status);
+        // console.log('Error', response.status);
         break;
       case 401:
         this.router.navigateByUrl('/login', { replaceUrl: true });
@@ -59,7 +59,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         );
         break;
       case 500:
-        console.log('Ocorreu um erro inesperado de servidor.');
+        // console.log('Ocorreu um erro inesperado de servidor.');
         break;
     }
 
