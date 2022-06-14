@@ -6,12 +6,7 @@ import { MangaRepositoryService } from './repository/manga/manga-repository.serv
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    HttpClientModule
-  ],
-  providers: [
-    { provide: IMangaRepository, useClass: MangaRepositoryService },
-  ]
+  imports: [CommonModule, HttpClientModule],
+  providers: [{ provide: IMangaRepository, useClass: MangaRepositoryService }],
 })
-export class DataModule { }
+export class DataModule {}

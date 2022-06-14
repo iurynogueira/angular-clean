@@ -1,4 +1,4 @@
-import { MangaEntity } from "./manga-entity";
+import { MangaEntity } from './manga-entity';
 
 describe('Mangá', () => {
   it('should create instance mangá entity', () => {

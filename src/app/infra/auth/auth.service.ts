@@ -4,7 +4,7 @@ import { UserEntity } from 'src/app/domain/entities/user/user-entity';
 const credentialsKey = 'credentials';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private usuario!: UserEntity;

@@ -11,12 +11,12 @@ describe('AuthService', () => {
     id: 1,
     username: 'test',
     email: 'test@test.com.br',
-    token: '123'
+    token: '123',
   };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthService]
+      providers: [AuthService],
     });
 
     authService = TestBed.get(AuthService);

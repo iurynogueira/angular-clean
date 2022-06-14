@@ -1,22 +1,24 @@
+import {
+  HttpErrorResponse,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { HttpInterceptorService } from './http-interceptor.service';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
-import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of, throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { HttpInterceptorService } from './http-interceptor.service';
 
 const mockResponse = new HttpResponse({ body: { id: 1, name: 'John' } });
 const mockHandler = {
-  handle: jest.fn(() =>
-    of(mockResponse)
-  ),
+  handle: jest.fn(() => of(mockResponse)),
 };
 const credentials = {
   id: 1,
   username: 'test',
   email: 'test@test.com.br',
-  token: '123'
+  token: '123',
 };
 
 let router: Router;
@@ -24,9 +26,15 @@ let router: Router;
 describe('HttpInterceptorService', () => {
   const sutError = (statusCode: number) => {
     return {
-      handle: jest.fn(() => throwError(
-        new HttpErrorResponse({status: statusCode, error: {message: 'This is an error'}})))
-    }
+      handle: jest.fn(() =>
+        throwError(
+          new HttpErrorResponse({
+            status: statusCode,
+            error: { message: 'This is an error' },
+          })
+        )
+      ),
+    };
   };
 
   beforeEach(() => {
@@ -40,20 +48,29 @@ describe('HttpInterceptorService', () => {
   it('should intercept request without credentials', async () => {
     router = TestBed.inject(Router);
     const request = new HttpRequest('GET', '/api/users/');
-    const httpInterceptor = new HttpInterceptorService(router, new AuthService);
-      httpInterceptor.intercept(request, sutError(401)).subscribe(
-        response => {},
-        error => {
-          expect(error).toBeTruthy();
-        });
+    const httpInterceptor = new HttpInterceptorService(
+      router,
+      new AuthService()
+    );
+    httpInterceptor.intercept(request, sutError(401)).subscribe(
+      () => {
+        return;
+      },
+      (error) => {
+        expect(error).toBeTruthy();
+      }
+    );
   });
 
   it('should intercept request with credentials', async () => {
     const request = new HttpRequest('GET', '/api/users/');
-    const authService = new AuthService()
+    const authService = new AuthService();
     authService.credentials = credentials;
 
-    const httpInterceptor = new HttpInterceptorService(router, new AuthService);
+    const httpInterceptor = new HttpInterceptorService(
+      router,
+      new AuthService()
+    );
     const response = await httpInterceptor
       .intercept(request, mockHandler)
       .toPromise();
@@ -63,12 +80,18 @@ describe('HttpInterceptorService', () => {
   describe('errorHandler', () => {
     it.each([400, 401, 404, 500])('should call error %i', (statusCode) => {
       const requestMock = new HttpRequest('GET', '/wrongtest');
-      const httpInterceptor = new HttpInterceptorService(router, new AuthService);
+      const httpInterceptor = new HttpInterceptorService(
+        router,
+        new AuthService()
+      );
       httpInterceptor.intercept(requestMock, sutError(statusCode)).subscribe(
-        response => {},
-        error => {
+        () => {
+          return;
+        },
+        (error) => {
           expect(error).toBeTruthy();
-        });
+        }
+      );
     });
   });
 });

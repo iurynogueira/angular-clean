@@ -5,15 +5,13 @@ import { HttpInterceptorService } from './http/http-interceptor.service';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class InfraModule { }
+export class InfraModule {}
