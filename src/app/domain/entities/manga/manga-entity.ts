@@ -12,7 +12,7 @@ export class MangaEntity extends DomainEntity {
 
   constructor(mangaProps: MangaProps) {
     super();
-    const {name, total_pages} = mangaProps;
+    const { name, total_pages } = mangaProps;
     this.name = name;
     this.total_pages = total_pages;
   }
