@@ -47,7 +47,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         // console.log('Error', response.status);
         break;
       case 401:
-        this.router.navigateByUrl('/login', { replaceUrl: true });
+        // this.router.navigateByUrl('/login', { replaceUrl: true });
         break;
       case 404:
         errs.push(
