@@ -26,7 +26,7 @@ describe('MangaRepositoryService', () => {
   it('should return expected manga by index', (done) => {
     const expectedData = new MangaEntity({
       name: 'One Piece',
-      total_pages: 1000
+      total_pages: 1000,
     });
 
     service.get(1).subscribe((data) => {

@@ -4,7 +4,7 @@ describe('Mangá', () => {
   it('should create instance mangá entity', () => {
     const manga = new MangaEntity({
       name: 'one piece',
-      total_pages: 1000
+      total_pages: 1000,
     });
     expect(manga).toBeTruthy();
   });
@@ -12,10 +12,10 @@ describe('Mangá', () => {
   it('should add bookmark in mangá', () => {
     const manga = new MangaEntity({
       name: 'one piece',
-      total_pages: 1000
+      total_pages: 1000,
     });
 
-    manga.bookmarkPage(30)
-    expect(manga.actual_page).toBe(30)
+    manga.bookmarkPage(30);
+    expect(manga.actual_page).toBe(30);
   });
 });
