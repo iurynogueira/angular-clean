@@ -1,6 +1,6 @@
 import { MangaEntity } from './manga-entity';
 
-const sut = ():MangaEntity => {
+const sut = (): MangaEntity => {
   return new MangaEntity({
     name: 'one piece',
     total_pages: 1000,
