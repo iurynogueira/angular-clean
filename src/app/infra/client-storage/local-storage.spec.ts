@@ -63,4 +63,15 @@ describe('LocalStorageService', () => {
       }).toThrowError('Error removing data in localStorage: key not provided');
     });
   });
+  describe('Clear', () => {
+    it.skip('should clear all values from local storage', () => {
+      const values = ['one', 'two', 'three'];
+      values.forEach((value) => {
+        localStorage.setItem(value, value);
+      });
+      expect(localStorage.length).toBe(3);
+      localStorageService.clear();
+      expect(localStorage.length).toBe(0);
+    });
+  });
 });
