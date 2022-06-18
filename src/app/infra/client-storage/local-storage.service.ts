@@ -37,6 +37,6 @@ export class LocalStorageService implements IClientStorage {
   }
 
   clear() {
-    throw new Error('Method not implemented.');
+    localStorage.clear();
   }
 }

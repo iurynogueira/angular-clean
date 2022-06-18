@@ -64,7 +64,7 @@ describe('LocalStorageService', () => {
     });
   });
   describe('Clear', () => {
-    it.skip('should clear all values from local storage', () => {
+    it('should clear all values from local storage', () => {
       const values = ['one', 'two', 'three'];
       values.forEach((value) => {
         localStorage.setItem(value, value);
