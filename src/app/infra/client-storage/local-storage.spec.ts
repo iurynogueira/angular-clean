@@ -18,13 +18,13 @@ describe('LocalStorageService', () => {
 
   describe('Set', () => {
     it('should add value in local storage', () => {
-      localStorageService.set('name', 'angular');
-      const value = JSON.parse(localStorage.getItem('name') || '');
-      expect(value).toBe('angular');
+      localStorageService.set('folklore', 'evermore');
+      const value = JSON.parse(localStorage.getItem('folklore') || '');
+      expect(value).toBe('evermore');
     });
     it('should throw error when no key is provided to set', () => {
       expect(() => {
-        localStorageService.set('', 'angular');
+        localStorageService.set('', 'evermore');
       }).toThrowError('Error saving to localStorage: key not provided');
     });
     it.todo(
@@ -33,16 +33,16 @@ describe('LocalStorageService', () => {
   });
   describe('Get', () => {
     it('should get a single value in local storage', () => {
-      localStorage.setItem('test', JSON.stringify('get'));
-      expect(localStorageService.get('test')).toBe('get');
+      localStorage.setItem('folklore', JSON.stringify('evermore'));
+      expect(localStorageService.get('folklore')).toBe('evermore');
     });
     it('should get an object value in local storage', () => {
       const myObject = { value: 1 };
-      localStorage.setItem('test', JSON.stringify(myObject));
-      expect(localStorageService.get('test')).toEqual(myObject);
+      localStorage.setItem('folklore', JSON.stringify(myObject));
+      expect(localStorageService.get('folklore')).toEqual(myObject);
     });
     it('should return null when a given key is not setted', () => {
-      expect(localStorageService.get('another test')).toBeNull();
+      expect(localStorageService.get('evermore')).toBeNull();
     });
     it('should throw error when no key is provided to get', () => {
       expect(() => {
@@ -52,10 +52,10 @@ describe('LocalStorageService', () => {
   });
   describe('Remove', () => {
     it('should remove a value from local storage', () => {
-      localStorage.setItem('test', 'get');
-      expect(localStorage.getItem('test')).toBe('get');
-      localStorageService.remove('test');
-      expect(localStorage.getItem('test')).toBeNull();
+      localStorage.setItem('folklore', 'evermore');
+      expect(localStorage.getItem('folklore')).toBe('evermore');
+      localStorageService.remove('folklore');
+      expect(localStorage.getItem('folklore')).toBeNull();
     });
     it('should throw error when no key is provided to remove', () => {
       expect(() => {
@@ -65,8 +65,7 @@ describe('LocalStorageService', () => {
   });
   describe('Clear', () => {
     it('should clear all values from local storage', () => {
-      const values = ['one', 'two', 'three'];
-      values.forEach((value) => {
+      ['folklore', 'evermore', 'woodvale'].forEach((value) => {
         localStorage.setItem(value, value);
       });
       expect(localStorage.length).toBe(3);
