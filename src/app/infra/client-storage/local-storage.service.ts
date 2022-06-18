@@ -17,10 +17,18 @@ export class LocalStorageService implements IClientStorage {
     throw new Error('Error saving to localStorage: key not provided');
   }
 
-  get(key: string): string {
-    throw new Error('Method not implemented.');
+  get(key: string): unknown {
+    if (key) {
+      const value = localStorage.getItem(key);
+      if (value) {
+        return JSON.parse(value);
+      }
+      return null;
+    }
+    throw new Error('Error getting data in localStorage: key not provided');
   }
-  remove(key: string): void {
+
+  remove(key: string): unknown {
     throw new Error('Method not implemented.');
   }
   clear(): void {
