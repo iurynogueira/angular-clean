@@ -5,7 +5,7 @@ import IClientStorage from './iclient-storage';
   providedIn: 'root',
 })
 export class LocalStorageService implements IClientStorage {
-  set(key: string, data: unknown): unknown {
+  set(key: string, data: unknown) {
     if (key) {
       try {
         localStorage.setItem(key, JSON.stringify(data));
@@ -28,10 +28,11 @@ export class LocalStorageService implements IClientStorage {
     throw new Error('Error getting data in localStorage: key not provided');
   }
 
-  remove(key: string): unknown {
+  remove(key: string) {
     throw new Error('Method not implemented.');
   }
-  clear(): void {
+
+  clear() {
     throw new Error('Method not implemented.');
   }
 }
