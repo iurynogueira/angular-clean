@@ -50,4 +50,17 @@ describe('LocalStorageService', () => {
       }).toThrowError('Error getting data in localStorage: key not provided');
     });
   });
+  describe('Remove', () => {
+    it('should remove a value from local storage', () => {
+      localStorage.setItem('test', 'get');
+      expect(localStorage.getItem('test')).toBe('get');
+      localStorageService.remove('test');
+      expect(localStorage.getItem('test')).toBeNull();
+    });
+    it('should throw error when no key is provided to remove', () => {
+      expect(() => {
+        localStorageService.remove('');
+      }).toThrowError('Error removing data in localStorage: key not provided');
+    });
+  });
 });
