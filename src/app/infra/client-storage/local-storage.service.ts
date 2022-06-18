@@ -29,7 +29,11 @@ export class LocalStorageService implements IClientStorage {
   }
 
   remove(key: string) {
-    throw new Error('Method not implemented.');
+    if (key) {
+      localStorage.removeItem(key);
+      return;
+    }
+    throw new Error('Error removing data in localStorage: key not provided');
   }
 
   clear() {
