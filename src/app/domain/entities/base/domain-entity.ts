@@ -1,3 +1,3 @@
 export class DomainEntity {
-  id?: string;
+  id?: number | string;
 }
