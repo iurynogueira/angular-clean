@@ -17,7 +17,7 @@ export class ChampionEntity extends DomainEntity {
   public readonly tags!: string[];
   public readonly stats!: StatsChampion;
 
-  constructor(readonly championsProps: ChampionProps) {
+  constructor(championsProps: ChampionProps) {
     super();
     const { name, stats, tags, key }: ChampionProps = championsProps;
     this.id = key;

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://localhost:9000/api',
+  serverUrl: 'https://ddragon.leagueoflegends.com/cdn/12.11.1/data/pt_BR',
 };
 
 /*
