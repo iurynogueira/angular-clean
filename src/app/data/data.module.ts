@@ -11,7 +11,7 @@ import { ChampionRepositoryService } from './repository/champion/champion-reposi
   imports: [CommonModule, HttpClientModule],
   providers: [
     { provide: IMangaRepository, useClass: MangaRepositoryService },
-    { provide: IChampionRepository, useClass: ChampionRepositoryService }
+    { provide: IChampionRepository, useClass: ChampionRepositoryService },
   ],
 })
 export class DataModule {}

@@ -7,13 +7,9 @@ import { ChampionRepositoryService } from './data/repository/champion/champion-r
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'mangas';
-
   constructor(private championService: ChampionRepositoryService) {}
 
   ngOnInit() {
-    this.championService.getAll().subscribe(response => {
-      console.log('response ->', response);
-    });
+    this.championService.getAll().subscribe();
   }
 }

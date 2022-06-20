@@ -15,7 +15,7 @@ describe('ChampionRepositoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ChampionRepositoryService]
+      providers: [ChampionRepositoryService],
     });
     controller = TestBed.get(HttpTestingController);
     service = TestBed.get(ChampionRepositoryService);
@@ -25,20 +25,45 @@ describe('ChampionRepositoryService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return a list of champions', async () => {
+  it('should return a list of champions', () => {
     let dumbChampions: ChampionEntity[] = [];
-    service.getAll()
-      .subscribe(
-        response => {
-          dumbChampions = response;
-        }
-      );
+    service.getAll().subscribe((response) => {
+      dumbChampions = response;
+    });
 
-    const request = controller.expectOne(`${environment.serverUrl}/champion.json`)
-    request.flush({data: {Aatrox: championMock() }});
+    const request = controller.expectOne(
+      `${environment.serverUrl}/champion.json`
+    );
+    request.flush({ data: { Aatrox: championMock() } });
     expect(dumbChampions.length).toBe(1);
-    expect(dumbChampions[0].name).toBe(championMock().name);
+  });
+
+  it('should return correct instance in champion list', () => {
+    let dumbChampions: ChampionEntity[] = [];
+    service.getAll().subscribe((response) => {
+      dumbChampions = response;
+    });
+
+    const request = controller.expectOne(
+      `${environment.serverUrl}/champion.json`
+    );
+    request.flush({ data: { Aatrox: championMock() } });
     expect(dumbChampions[0]).toBeInstanceOf(ChampionEntity);
+  });
+
+  it('should return correct attributes of instance ', () => {
+    let dumbChampions: ChampionEntity[] = [];
+    service.getAll().subscribe((response) => {
+      dumbChampions = response;
+    });
+
+    const request = controller.expectOne(
+      `${environment.serverUrl}/champion.json`
+    );
+    request.flush({ data: { Aatrox: championMock() } });
+    expect(dumbChampions[0].name).toBe(championMock().name);
+    expect(dumbChampions[0].stats).toEqual(championMock().stats);
+    expect(dumbChampions[0].tags).toEqual(championMock().tags);
   });
 
   afterEach(() => {
