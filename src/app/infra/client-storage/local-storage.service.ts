@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { SafeAny } from 'src/safeAny';
 import IClientStorage from './iclient-storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService implements IClientStorage {
-  set(key: string, data: unknown) {
+  set(key: string, data: SafeAny) {
     if (key) {
       try {
         localStorage.setItem(key, JSON.stringify(data));
@@ -17,7 +18,7 @@ export class LocalStorageService implements IClientStorage {
     throw new Error('Error saving to localStorage: key not provided');
   }
 
-  get(key: string): unknown {
+  get(key: string): SafeAny {
     if (key) {
       const value = localStorage.getItem(key);
       if (value) {
