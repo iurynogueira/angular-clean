@@ -27,9 +27,14 @@ describe('LocalStorageService', () => {
         localStorageService.set('', 'evermore');
       }).toThrowError('Error saving to localStorage: key not provided');
     });
-    it.todo(
-      'should throw error when local storage cannot set the provided value'
-    );
+    it('should throw error when local storage cannot set the provided value', () => {
+      jest.spyOn(Storage.prototype, 'setItem').mockImplementationOnce(() => {
+        throw new Error();
+      });
+      expect(() => {
+        localStorageService.set('folklore', 'evermore');
+      }).toThrowError('Error saving to localStorage: Error');
+    });
   });
   describe('Get', () => {
     it('should get a single value in local storage', () => {
