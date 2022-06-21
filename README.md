@@ -1,5 +1,7 @@
 # Angular Clean Architecture
 
+<a href="https://codeclimate.com/github/MarcosOliveir4/angular-clean/maintainability"><img src="https://api.codeclimate.com/v1/badges/4febad13728b507066af/maintainability" /></a>
+<a href="https://codeclimate.com/github/MarcosOliveir4/angular-clean/test_coverage"><img src="https://api.codeclimate.com/v1/badges/4febad13728b507066af/test_coverage" /></a>
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/iurynogueira/angular-clean/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/iurynogueira/angular-clean/tree/main)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
