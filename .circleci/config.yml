@@ -46,7 +46,7 @@ jobs:
           name: Upload coverage results to Code Climate
           command: |
             ./tmp/cc-test-reporter sum-coverage tmp/codeclimate.*.json -o tmp/codeclimate.total.json
-            ./tmp/cc-test-reporter upload-coverage -r 679b5ad2690f8beffe37eb8f51b856769b9bbdb99fe2cee981f6b651ace3c37c -i ./tmp/codeclimate.total.json
+            ./tmp/cc-test-reporter upload-coverage -i ./tmp/codeclimate.total.json
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
