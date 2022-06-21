@@ -28,16 +28,16 @@ jobs:
       - run:
           name: Test
           command: yarn test
-       - run:
+      - run:
           name: Download cc-test-reporter
           command: |
             mkdir -p tmp/
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
             chmod +x ./tmp/cc-test-reporter
-        - run:
+      - run:
           name: Run all tests with coverage
           command: |
-            yarn test:ci
+            yarn test:coverage
             ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/lcov.info
       - run:
           name: Generate build
