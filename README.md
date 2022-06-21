@@ -1,6 +1,14 @@
 # Angular Clean Architecture
 
+<div style="display: flex; gap: 15px;">
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/c7f8594f53a294978ad0/maintainability)](https://codeclimate.com/github/iurynogueira/angular-clean/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c7f8594f53a294978ad0/test_coverage)](https://codeclimate.com/github/iurynogueira/angular-clean/test_coverage)
+
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/iurynogueira/angular-clean/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/iurynogueira/angular-clean/tree/main)
+
+</div>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
 
