@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MangaRepositoryService } from './data/repository/manga/manga-repository.service';
+import { ChampionRepositoryService } from './data/repository/champion/champion-repository.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,9 @@ import { MangaRepositoryService } from './data/repository/manga/manga-repository
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'mangas';
-
-  constructor(private manga: MangaRepositoryService) {}
+  constructor(private championService: ChampionRepositoryService) {}
 
   ngOnInit() {
-    this.manga.get(1).subscribe();
+    this.championService.getAll().subscribe();
   }
 }

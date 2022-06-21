@@ -8,6 +8,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
+import { SafeAny } from 'src/safeAny';
 import { ValidationError } from 'ts.validator.fluent/dist';
 import { AuthService } from '../auth/auth.service';
 
@@ -18,9 +19,9 @@ export class HttpInterceptorService implements HttpInterceptor {
   constructor(private router: Router, private authService: AuthService) {}
 
   intercept(
-    req: HttpRequest<unknown>,
+    req: HttpRequest<SafeAny>,
     next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
+  ): Observable<HttpEvent<SafeAny>> {
     if (this.authService.credentials.token) {
       req = req.clone({
         setHeaders: {
@@ -39,8 +40,8 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   private errorHandler(
     response: HttpErrorResponse
-  ): Observable<HttpEvent<unknown>> {
-    const errs: unknown[] = [];
+  ): Observable<HttpEvent<SafeAny>> {
+    const errs: SafeAny[] = [];
 
     switch (response.status) {
       case 400:
