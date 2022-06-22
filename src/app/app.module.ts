@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DataModule } from './data/data.module';
 import { DomainModule } from './domain/domain.module';
 import { InfraModule } from './infra/infra.module';
 
@@ -12,7 +11,6 @@ import { InfraModule } from './infra/infra.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DataModule,
     InfraModule,
     DomainModule,
   ],

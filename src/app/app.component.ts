@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChampionRepositoryService } from './data/repository/champion/champion-repository.service';
-import GetChampion from './domain/usecases/GetChampion';
-import MemoryRepositoryFactory from './infra/factory/MemoryRepositoryFactory';
+import { environment } from 'src/environments/environment';
+import ServiceFactoryHttp from './infra/factory/ServiceFactoryHttp';
+import AxiosAdapter from './infra/http/AxiosAdapter';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +10,8 @@ import MemoryRepositoryFactory from './infra/factory/MemoryRepositoryFactory';
 })
 export class AppComponent implements OnInit {
   async ngOnInit() {
-    const factory = new MemoryRepositoryFactory();
-    const getChampion = new GetChampion(factory);
-    const champion = await getChampion.execute();
-    console.log('champion ->', champion);
+    const serviceFactory = new ServiceFactoryHttp(new AxiosAdapter(), environment.serverUrl)
+    const championService = serviceFactory.createChampionService()
+    const champions = await championService.list()
   }
 }
