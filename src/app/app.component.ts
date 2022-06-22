@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChampionRepositoryService } from './data/repository/champion/champion-repository.service';
+import GetChampion from './domain/usecases/GetChampion';
+import MemoryRepositoryFactory from './infra/factory/MemoryRepositoryFactory';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,10 @@ import { ChampionRepositoryService } from './data/repository/champion/champion-r
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private championService: ChampionRepositoryService) {}
-
-  ngOnInit() {
-    this.championService.getAll().subscribe();
+  async ngOnInit() {
+    const factory = new MemoryRepositoryFactory();
+    const getChampion = new GetChampion(factory);
+    const champion = await getChampion.execute();
+    console.log('champion ->', champion);
   }
 }

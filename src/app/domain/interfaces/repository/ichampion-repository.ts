@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs';
 import { ChampionEntity } from '../../entities/champion/champion-entity';
 
-export abstract class IChampionRepository {
-  abstract getAll(): Observable<ChampionEntity[]>;
+export default interface IChampionRepository {
+  getAll(): Promise<ChampionEntity[]>;
 }
