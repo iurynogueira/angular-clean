@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SafeAny } from 'src/safeAny';
-import IClientStorage from './iclient-storage';
+import { IClientStorage } from './iclient-storage';
 
 @Injectable({
   providedIn: 'root',
