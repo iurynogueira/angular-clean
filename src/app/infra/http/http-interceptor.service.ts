@@ -9,7 +9,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import { SafeAny } from 'src/safeAny';
-import { ValidationError } from 'ts.validator.fluent/dist';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -51,13 +50,6 @@ export class HttpInterceptorService implements HttpInterceptor {
         // this.router.navigateByUrl('/login', { replaceUrl: true });
         break;
       case 404:
-        errs.push(
-          new ValidationError(
-            '',
-            '',
-            '<strong>404</strong>: O recurso requisitado não existe.'
-          )
-        );
         break;
       case 500:
         // console.log('Ocorreu um erro inesperado de servidor.');
