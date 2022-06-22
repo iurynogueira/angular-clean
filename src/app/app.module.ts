@@ -8,12 +8,7 @@ import { InfraModule } from './infra/infra.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    InfraModule,
-    DomainModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, InfraModule, DomainModule],
   providers: [],
   bootstrap: [AppComponent],
 })

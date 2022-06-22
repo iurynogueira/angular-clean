@@ -1,5 +1,5 @@
-import ChampionService from "src/app/services/ChampionService";
+import ChampionService from 'src/app/services/ChampionService';
 
 export default interface ServiceFactory {
-	createChampionService(): ChampionService;
+  createChampionService(): ChampionService;
 }

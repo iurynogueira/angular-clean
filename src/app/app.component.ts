@@ -10,8 +10,11 @@ import AxiosAdapter from './infra/http/AxiosAdapter';
 })
 export class AppComponent implements OnInit {
   async ngOnInit() {
-    const serviceFactory = new ServiceFactoryHttp(new AxiosAdapter(), environment.serverUrl)
-    const championService = serviceFactory.createChampionService()
-    const champions = await championService.list()
+    const serviceFactory = new ServiceFactoryHttp(
+      new AxiosAdapter(),
+      environment.serverUrl
+    );
+    const championService = serviceFactory.createChampionService();
+    const champions = await championService.list();
   }
 }
