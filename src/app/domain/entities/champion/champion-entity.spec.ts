@@ -1,8 +1,22 @@
 import championMock from 'src/app/mock/champion-mock';
-import { ChampionEntity } from './champion-entity';
+import { ChampionEntity, ChampionProps } from './champion-entity';
 
-const sut = (): ChampionEntity => {
-  return new ChampionEntity(championMock());
+const sut = (champion?: ChampionProps): ChampionEntity => {
+  return new ChampionEntity(champion || championMock());
+};
+
+const sutEzreal = (): ChampionEntity => {
+  return new ChampionEntity({
+    key: '81',
+    name: 'Ezreal',
+    stats: {
+      armor: 24,
+      attackdamage: 60,
+      attackspeed: 0.625,
+      hp: 900,
+    },
+    tags: ['Mage', 'Marksman'],
+  });
 };
 
 describe('Champion Entity', () => {
@@ -27,19 +41,7 @@ describe('Champion Entity', () => {
   });
 
   it('should compare with other champion and return the differences and witout tags', () => {
-    const ezrealWithHp = new ChampionEntity({
-      key: '81',
-      name: 'Ezreal',
-      stats: {
-        armor: 24,
-        attackdamage: 60,
-        attackspeed: 0.625,
-        hp: 900,
-      },
-      tags: ['Mage', 'Marksman'],
-    });
-
-    const volibear = new ChampionEntity({
+    const volibear = sut({
       key: '106',
       name: 'Volibear',
       stats: {
@@ -51,7 +53,7 @@ describe('Champion Entity', () => {
       tags: ['Fighter', 'Tank'],
     });
 
-    expect(ezrealWithHp.compareWith(volibear)).toEqual({
+    expect(sutEzreal().compareWith(volibear)).toEqual({
       armor: 'smaller',
       attackdamage: 'equal',
       attackspeed: 'equal',
@@ -61,19 +63,7 @@ describe('Champion Entity', () => {
   });
 
   it('should compare two champions with one same tag', () => {
-    const ezrealWithHp = new ChampionEntity({
-      key: '81',
-      name: 'Ezreal',
-      stats: {
-        armor: 24,
-        attackdamage: 60,
-        attackspeed: 0.625,
-        hp: 900,
-      },
-      tags: ['Marksman', 'Mage'],
-    });
-
-    const annie = new ChampionEntity({
+    const annie = sut({
       key: '106',
       name: 'Annie',
       stats: {
@@ -85,7 +75,7 @@ describe('Champion Entity', () => {
       tags: ['Mage'],
     });
 
-    expect(ezrealWithHp.compareWith(annie)).toEqual({
+    expect(sutEzreal().compareWith(annie)).toEqual({
       armor: 'bigger',
       attackdamage: 'equal',
       attackspeed: 'equal',
