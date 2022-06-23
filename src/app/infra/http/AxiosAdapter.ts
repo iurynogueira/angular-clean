@@ -8,8 +8,8 @@ export default class AxiosAdapter implements Http {
     return response.data;
   }
 
-  // async post(url: string, data: SafeAny): Promise<SafeAny> {
-  //   const response = await axios({ method: 'post', url, data });
-  //   return response.data;
-  // }
+  async post(url: string, data: SafeAny): Promise<SafeAny> {
+    const response = await axios({ method: 'post', url, data });
+    return response.data;
+  }
 }
