@@ -108,3 +108,5 @@ dist
 
 # VSCode recommendation
 # .vscode
+
+.DS_Store
