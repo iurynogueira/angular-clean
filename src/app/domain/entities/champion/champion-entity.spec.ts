@@ -1,4 +1,4 @@
-import championMock from 'src/app/mock/champion-mock';
+import { championMock } from 'src/app/mock';
 import { ChampionEntity } from './champion-entity';
 
 const sut = (): ChampionEntity => {
