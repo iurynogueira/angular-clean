@@ -50,3 +50,5 @@ jspm_packages/
 
 # VSCode recommendation
 # .vscode
+
+.circleci
