@@ -1,12 +1,12 @@
+import ServiceFactory from 'src/app/infra/factory/ServiceFactory';
+import ChampionService from 'src/app/services/ChampionService';
 import { ChampionEntity } from '../entities/champion/champion-entity';
-import RepositoryFactory from '../factory/RepositoryFactory';
-import IChampionRepository from '../interfaces/repository/ichampion-repository';
 
 export default class GetChampion {
-  championRepository: IChampionRepository;
+  championService: ChampionService;
 
-  constructor(readonly repositoryFactory: RepositoryFactory) {
-    this.championRepository = repositoryFactory.createChampionRepository();
+  constructor(readonly serviceFactory: ServiceFactory) {
+    this.championService = serviceFactory.createChampionService();
   }
 
   private selectChampion(): number {
@@ -14,7 +14,7 @@ export default class GetChampion {
   }
 
   async execute(): Promise<ChampionEntity> {
-    const promise = await this.championRepository.getAll();
+    const promise = await this.championService.list();
     return promise[this.selectChampion()];
   }
 }
