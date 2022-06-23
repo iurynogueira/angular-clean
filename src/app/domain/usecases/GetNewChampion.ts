@@ -23,7 +23,7 @@ export default class GetNewChampion {
     return this.localStorageService.get('champions');
   }
 
-  getRandomNumberByLength(length: number): number {
+  public getRandomNumberByLength(length: number): number {
     const random = Math.floor(Math.random() * (length + 1));
     return random;
   }
@@ -48,6 +48,24 @@ export default class GetNewChampion {
     this.localStorageService.set('champions', toSave);
   }
 
+  private championAlreadyPicked(name: string) {
+    return (
+      this.getPickedChampion() === name && this.lastChampions.includes(name)
+    );
+  }
+
+  private getValidPosition(
+    position: number,
+    champions: ChampionEntity[]
+  ): number {
+    if (this.championAlreadyPicked(champions[position].name)) {
+      console.log(this.championAlreadyPicked(champions[position].name));
+      const newPosition = this.getRandomNumberByLength(champions.length);
+      this.getValidPosition(newPosition, champions);
+    }
+    return position;
+  }
+
   async execute(): Promise<ChampionEntity> {
     const lastPickedChampion = this.getPickedChampion();
 
@@ -57,15 +75,19 @@ export default class GetNewChampion {
       this.lastChampions = [...this.getLastFiveChampions()];
     }
 
-    const promise = await this.championService.list();
-    let position = this.getRandomNumberByLength(promise.length);
+    const champions = await this.championService.list();
 
-    while (lastPickedChampion === promise[position].name) {
-      position = this.getRandomNumberByLength(promise.length);
-    }
+    let position = this.getValidPosition(
+      this.getRandomNumberByLength(champions.length),
+      champions
+    );
 
-    this.saveOnLocal(promise[position].name);
+    console.log(position);
 
-    return promise[position];
+    this.saveOnLocal(champions[position].name);
+
+    console.log(this.localStorageService.get('champions'));
+
+    return champions[position];
   }
 }
