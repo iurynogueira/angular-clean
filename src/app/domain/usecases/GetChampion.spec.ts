@@ -7,8 +7,11 @@ import GetChampion from './GetChampion';
 let serviceFactory: ServiceFactory;
 
 beforeEach(() => {
-  serviceFactory = new ServiceFactoryHttp(new AxiosAdapter(), environment.serverUrl)
-})
+  serviceFactory = new ServiceFactoryHttp(
+    new AxiosAdapter(),
+    environment.serverUrl
+  );
+});
 
 describe('GetChampion Usecase', () => {
   it('should return', async () => {
