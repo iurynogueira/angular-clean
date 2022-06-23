@@ -48,9 +48,9 @@ export default class GetNewChampion {
     this.localStorageService.set('champions', toSave);
   }
 
-  private championAlreadyPicked(name: string) {
+  private championAlreadyPicked(name: string): boolean {
     return (
-      this.getPickedChampion() === name && this.lastChampions.includes(name)
+      this.getPickedChampion() === name || this.lastChampions.includes(name)
     );
   }
 
@@ -59,9 +59,8 @@ export default class GetNewChampion {
     champions: ChampionEntity[]
   ): number {
     if (this.championAlreadyPicked(champions[position].name)) {
-      console.log(this.championAlreadyPicked(champions[position].name));
       const newPosition = this.getRandomNumberByLength(champions.length);
-      this.getValidPosition(newPosition, champions);
+      return this.getValidPosition(newPosition, champions);
     }
     return position;
   }
@@ -77,16 +76,12 @@ export default class GetNewChampion {
 
     const champions = await this.championService.list();
 
-    let position = this.getValidPosition(
+    const position = this.getValidPosition(
       this.getRandomNumberByLength(champions.length),
       champions
     );
 
-    console.log(position);
-
     this.saveOnLocal(champions[position].name);
-
-    console.log(this.localStorageService.get('champions'));
 
     return champions[position];
   }
