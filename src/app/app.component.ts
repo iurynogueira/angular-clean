@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChampionRepositoryService } from './data/repository/champion/champion-repository.service';
+import { environment } from 'src/environments/environment';
+import ServiceFactoryHttp from './infra/factory/ServiceFactoryHttp';
+import AxiosAdapter from './infra/http/AxiosAdapter';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,12 @@ import { ChampionRepositoryService } from './data/repository/champion/champion-r
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private championService: ChampionRepositoryService) {}
-
-  ngOnInit() {
-    this.championService.getAll().subscribe();
+  async ngOnInit() {
+    const serviceFactory = new ServiceFactoryHttp(
+      new AxiosAdapter(),
+      environment.serverUrl
+    );
+    const championService = serviceFactory.createChampionService();
+    const champions = await championService.list();
   }
 }
