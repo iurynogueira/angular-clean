@@ -68,10 +68,10 @@ export default class GetNewChampion {
   async execute(): Promise<ChampionEntity> {
     const lastPickedChampion = this.getPickedChampion();
 
+    this.lastChampions = [...this.getLastFiveChampions()];
+
     if (lastPickedChampion) {
-      this.lastChampions = [lastPickedChampion, ...this.getLastFiveChampions()];
-    } else {
-      this.lastChampions = [...this.getLastFiveChampions()];
+      this.lastChampions.unshift(lastPickedChampion);
     }
 
     const champions = await this.championService.list();
