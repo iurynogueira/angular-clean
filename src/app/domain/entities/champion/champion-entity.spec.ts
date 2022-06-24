@@ -40,7 +40,7 @@ describe('Champion Entity', () => {
     expect(sut().stats).toEqual(championMock().stats);
   });
 
-  it('should compare with other champion and return the differences and witout tags', () => {
+  it('should compare with other champion and return the differences and without tags', () => {
     const volibear = sut({
       key: '106',
       name: 'Volibear',
