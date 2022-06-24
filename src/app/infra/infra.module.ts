@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { IClientStorage } from './client-storage/iclient-storage';
+import { LocalStorageService } from './client-storage/local-storage.service';
 import { HttpInterceptorService } from './http/http-interceptor.service';
 
 @NgModule({
@@ -11,6 +13,10 @@ import { HttpInterceptorService } from './http/http-interceptor.service';
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true,
+    },
+    {
+      provide: IClientStorage,
+      useClass: LocalStorageService,
     },
   ],
 })

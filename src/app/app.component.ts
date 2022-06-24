@@ -15,6 +15,6 @@ export class AppComponent implements OnInit {
       environment.serverUrl
     );
     const championService = serviceFactory.createChampionService();
-    const champions = await championService.list();
+    await championService.list();
   }
 }
