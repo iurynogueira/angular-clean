@@ -7,6 +7,8 @@ import { ChampionEntity } from '../entities/champion/champion-entity';
 import GetNewChampion from './GetNewChampion';
 
 let serviceFactory: ServiceFactory;
+const maxChampionsLength = 6;
+const maxChampionsInStorage = 5;
 
 beforeEach(() => {
   serviceFactory = new ServiceFactoryHttp(
@@ -38,41 +40,36 @@ describe('GetNewChampion Usecase', () => {
   });
   it('should create a champion that is not one of the last champions', async () => {
     localStorageService.clear();
-
     GetNewChampion.prototype.getRandomNumberByLength = jest
       .fn()
       .mockImplementation(() => {
-        return Math.floor(Math.random() * 6);
+        return Math.floor(Math.random() * maxChampionsLength);
       });
-
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < maxChampionsLength - 1; i++) {
       champion = await getNewChampion.execute();
       const { lastChampions } = localStorageService.get('champions');
       expect(Array.isArray(lastChampions)).toBeTruthy();
       expect(lastChampions.includes(champion.name)).toBeFalsy();
     }
-
     jest.clearAllMocks();
   });
   it('should save last champion before generating a new champion', async () => {
     let lastChampions = localStorageService.get('champions').lastChampions;
     const pickedChampion = localStorageService.get('champions').pickedChampion;
     expect(lastChampions.length).toBe(0);
-
     await getNewChampion.execute();
     lastChampions = localStorageService.get('champions').lastChampions;
     expect(lastChampions.includes(pickedChampion)).toBeTruthy();
   });
   it('should save a max number of five last champions on local storage', async () => {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < maxChampionsInStorage; i++) {
       champion = await getNewChampion.execute();
     }
     let { lastChampions } = localStorageService.get('champions');
-    expect(lastChampions).toHaveLength(5);
-
+    expect(lastChampions).toHaveLength(maxChampionsInStorage);
     getNewChampion.execute();
     lastChampions = localStorageService.get('champions').lastChampions;
-    expect(lastChampions).toHaveLength(5);
+    expect(lastChampions).toHaveLength(maxChampionsInStorage);
   });
 
   afterEach(() => {

@@ -67,22 +67,16 @@ export default class GetNewChampion {
 
   async execute(): Promise<ChampionEntity> {
     const lastPickedChampion = this.getPickedChampion();
-
     this.lastChampions = [...this.getLastFiveChampions()];
-
     if (lastPickedChampion) {
       this.lastChampions.unshift(lastPickedChampion);
     }
-
     const champions = await this.championService.list();
-
     const position = this.getValidPosition(
       this.getRandomNumberByLength(champions.length),
       champions
     );
-
     this.saveOnLocal(champions[position].name);
-
     return champions[position];
   }
 }
