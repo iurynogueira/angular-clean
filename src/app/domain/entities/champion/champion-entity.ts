@@ -43,16 +43,16 @@ export class ChampionEntity extends DomainEntity {
   compareState(statsKey: TypeState, stateOtherChampion: number): CompareState {
     if (stateOtherChampion === this.stats[statsKey]) {
       return CompareState.Equal;
-    } else if (stateOtherChampion > this.stats[statsKey]) {
-      return CompareState.Smaller;
-    } else {
-      return CompareState.Bigger;
     }
+    if (stateOtherChampion > this.stats[statsKey]) {
+      return CompareState.Smaller;
+    }
+    return CompareState.Bigger;
   }
 
-  hasTag(tasgOtherChampion: string[]): boolean {
+  hasTag(tagsOtherChampion: string[]): boolean {
     let tagInArray = false;
-    tasgOtherChampion.forEach((tag) => {
+    tagsOtherChampion.forEach((tag) => {
       if (this.tags.includes(tag)) {
         tagInArray = true;
       }
