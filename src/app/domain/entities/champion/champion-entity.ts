@@ -12,6 +12,20 @@ interface StatsChampion {
   attackdamage: number;
   attackspeed: number;
 }
+
+enum TypeState {
+  hp = 'hp',
+  armor = 'armor',
+  attackdamage = 'attackdamage',
+  attackspeed = 'attackspeed',
+}
+
+export enum CompareState {
+  Equal = 'equal',
+  Smaller = 'smaller',
+  Bigger = 'bigger',
+}
+
 export class ChampionEntity extends DomainEntity {
   public readonly name!: string;
   public readonly tags!: string[];
@@ -24,5 +38,44 @@ export class ChampionEntity extends DomainEntity {
     this.name = name;
     this.stats = stats;
     this.tags = tags;
+  }
+
+  compareState(statsKey: TypeState, stateOtherChampion: number): CompareState {
+    if (stateOtherChampion === this.stats[statsKey]) {
+      return CompareState.Equal;
+    }
+    if (stateOtherChampion > this.stats[statsKey]) {
+      return CompareState.Smaller;
+    }
+    return CompareState.Bigger;
+  }
+
+  hasTag(tagsOtherChampion: string[]): boolean {
+    let tagInArray = false;
+    tagsOtherChampion.forEach((tag) => {
+      if (this.tags.includes(tag)) {
+        tagInArray = true;
+      }
+    });
+    return tagInArray;
+  }
+
+  public compareWith(otherChampion: ChampionEntity) {
+    const outputStats = {
+      armor: '',
+      attackdamage: '',
+      attackspeed: '',
+      hp: '',
+    };
+
+    const attributes = Object.keys(outputStats);
+    (attributes as TypeState[]).forEach((key) => {
+      outputStats[key] = this.compareState(key, otherChampion.stats[key]);
+    });
+
+    return {
+      ...outputStats,
+      tag: this.hasTag(otherChampion.tags),
+    };
   }
 }
