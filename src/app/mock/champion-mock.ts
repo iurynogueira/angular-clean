@@ -1,6 +1,6 @@
 import { ChampionProps } from '../domain/entities/champion/champion-entity';
 
-export default function championMock(): ChampionProps {
+export function championMock(): ChampionProps {
   return {
     name: 'Aatrox',
     key: '266',
