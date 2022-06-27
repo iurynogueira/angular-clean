@@ -17,7 +17,8 @@
     "prepare": "husky install",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "yarn docs:json && start-storybook -p 6006",
-    "build-storybook": "yarn docs:json && build-storybook"
+    "build-storybook": "yarn docs:json && build-storybook",
+    "commit": "git-cz"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +40,8 @@
     "@angular/cli": "~14.0.0",
     "@angular/compiler-cli": "^14.0.0",
     "@babel/core": "^7.18.5",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@compodoc/compodoc": "^1.1.19",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
@@ -52,6 +55,8 @@
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "babel-loader": "^8.2.5",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -88,6 +93,13 @@
     ]
   },
   "lint-staged": {
-    "./src": "pre-commit"
+    "./src": [
+      "commit-msg"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
