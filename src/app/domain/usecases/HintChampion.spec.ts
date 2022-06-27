@@ -7,6 +7,7 @@ import { championMockEzreal } from 'src/app/mock/championMockEzreal';
 import { environment } from 'src/environments/environment';
 import {
   ChampionEntity,
+  ChampionProps,
   CompareState,
 } from '../entities/champion/champion-entity';
 import HintChampion from './HintChampion';
@@ -18,6 +19,12 @@ let serviceFactory: ServiceFactory;
 const mockChampionInLocal = {
   lastChampions: [],
   pickedChampion: championMockEzreal().name,
+};
+
+const execute = async (championMock: ChampionProps) => {
+  return await hintChampion.execute({
+    champion: new ChampionEntity(championMock),
+  });
 };
 
 beforeEach(() => {
@@ -32,11 +39,7 @@ beforeEach(() => {
 
 describe('HintChampion', () => {
   it('should return failure when the champions its not equal', async () => {
-    const compareResultFail = await hintChampion.execute({
-      champion: new ChampionEntity(championMock()),
-    });
-
-    expect(compareResultFail).toEqual({
+    expect(await execute(championMock())).toEqual({
       result: false,
       armor: CompareState.Bigger,
       attackdamage: CompareState.Equal,
@@ -47,11 +50,7 @@ describe('HintChampion', () => {
   });
 
   it('should return successe when the champions its equal', async () => {
-    const compareResultSuc = await hintChampion.execute({
-      champion: new ChampionEntity(championMockEzreal()),
-    });
-
-    expect(compareResultSuc).toEqual({
+    expect(await execute(championMockEzreal())).toEqual({
       result: true,
       armor: CompareState.Equal,
       attackdamage: CompareState.Equal,
