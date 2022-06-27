@@ -49,7 +49,7 @@ describe('HintChampion', () => {
     });
   });
 
-  it('should return successe when the champions its equal', async () => {
+  it('should return success when the champions its equal', async () => {
     expect(await execute(championMockEzreal())).toEqual({
       result: true,
       armor: CompareState.Equal,
@@ -58,6 +58,20 @@ describe('HintChampion', () => {
       hp: CompareState.Equal,
       tag: true,
     });
+  });
+
+  it('should return an error when the local storages champion is not found', async () => {
+    const mockChampionWrongInLocal = {
+      lastChampions: [],
+      pickedChampion: 'ChampionNameWrong',
+    };
+
+    localStorageService.set('champions', mockChampionWrongInLocal);
+    try {
+      await execute(championMockEzreal());
+    } catch (error) {
+      expect(error).toStrictEqual(new Error('Champion not found!'));
+    }
   });
 
   afterAll(() => {

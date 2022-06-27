@@ -24,8 +24,12 @@ export default class HintChampion {
     const pickedChampion = champions.filter((champion) =>
       this.isSameChampion(champion.name, lastChampions)
     )[0];
-    const resultCompare = input.champion.compareWith(pickedChampion);
 
+    if (!pickedChampion) {
+      throw new Error('Champion not found!');
+    }
+
+    const resultCompare = input.champion.compareWith(pickedChampion);
     return {
       result: pickedChampion.name === input.champion.name,
       ...resultCompare,
