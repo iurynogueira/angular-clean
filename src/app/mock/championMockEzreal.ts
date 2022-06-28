@@ -6,7 +6,7 @@ export function championMockEzreal(): ChampionProps {
       armor: 24,
       attackdamage: 60,
       attackspeed: 0.625,
-      hp: 900,
+      hp: 600,
     },
     name: 'Ezreal',
     key: '81',
