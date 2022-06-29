@@ -40,7 +40,7 @@ export class ChampionEntity extends DomainEntity {
     this.tags = tags;
   }
 
-  compareState(statsKey: TypeState, stateOtherChampion: number): CompareState {
+  private compareState(statsKey: TypeState, stateOtherChampion: number): CompareState {
     if (stateOtherChampion === this.stats[statsKey]) {
       return CompareState.Equal;
     }
@@ -50,7 +50,7 @@ export class ChampionEntity extends DomainEntity {
     return CompareState.Bigger;
   }
 
-  hasTag(tagsOtherChampion: string[]): boolean {
+  private hasTag(tagsOtherChampion: string[]): boolean {
     let tagInArray = false;
     tagsOtherChampion.forEach((tag) => {
       if (this.tags.includes(tag)) {
