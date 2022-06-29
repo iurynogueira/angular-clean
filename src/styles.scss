@@ -1,5 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('./assets/fonts/SourceSansPro-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('./assets/fonts/SourceSansPro-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('./assets/fonts/SourceSansPro-SemiBold.ttf');
+  font-weight: 600;
+}
+
 body {
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: 600;
 }
