@@ -40,7 +40,10 @@ export class ChampionEntity extends DomainEntity {
     this.tags = tags;
   }
 
-  private compareState(statsKey: TypeState, stateOtherChampion: number): CompareState {
+  private compareState(
+    statsKey: TypeState,
+    stateOtherChampion: number
+  ): CompareState {
     if (stateOtherChampion === this.stats[statsKey]) {
       return CompareState.Equal;
     }
