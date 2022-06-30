@@ -1,12 +1,3 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 <style>
   :host {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -319,14 +310,24 @@
       <span>API</span>
     </div>
   </div>
-</div>
 
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+  <div style="border: 1px solid red; text-align: center; padding: 60px">
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <div>
+        <span>Selecione o campeao</span>
+      </div>
+      <div>
+        <select name="campeao" id="campeao" [(ngModel)]="championSelected">
+          <option [ngValue]="champion" *ngFor="let champion of champions">
+            {{ champion.name }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <button (click)="hint()">Chutar!</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <router-outlet></router-outlet>
