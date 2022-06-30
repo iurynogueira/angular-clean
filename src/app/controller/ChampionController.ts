@@ -1,5 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { ChampionEntity } from '../domain/entities/champion/champion-entity';
+import GetNewChampion from '../domain/usecases/GetNewChampion';
 import HintChampion from '../domain/usecases/HintChampion';
 import { IClientStorage } from '../infra/client-storage/iclient-storage';
 import { LocalStorageService } from '../infra/client-storage/local-storage.service';
@@ -33,5 +34,13 @@ export default class ChampionController {
       this.serviceFactory
     );
     return await hintChampion.execute({ champion });
+  }
+
+  async getNewChampion() {
+    const getNewChampion = new GetNewChampion(
+      this.serviceFactory,
+      this.storageService
+    );
+    return await getNewChampion.execute();
   }
 }
