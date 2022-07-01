@@ -8,22 +8,19 @@
     </select>
 
     <div class="result-ctn" *ngIf="result">
-      <div>
-        <span>{{ result.armor }}</span>
-        <h2>Armor</h2>
+      <div class="result-item" *ngFor="let item of formatValues()">
+        <div
+          class="info-result"
+          [ngClass]="{ error: !item.correct, success: item.correct }"
+        >
+          <span>{{ item.icon }}</span>
+        </div>
+        <h2>{{ item.label }}</h2>
       </div>
-      <div>
-        <span>{{ result.hp }}</span>
-        <h2>HP</h2>
-      </div>
-      <div>
-        <span>{{ result.attackdamage }}</span>
-        <h2>Atk Dmg</h2>
-      </div>
-      <div>
-        <span>{{ result.attackspeed }}</span>
-        <h2>Atk Speed</h2>
-      </div>
+    </div>
+
+    <div class="result-ctn" *ngIf="result && result.result">
+      <h2>Parabéns, você acertou!</h2>
     </div>
   </div>
   <div>

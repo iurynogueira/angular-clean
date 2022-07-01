@@ -11,6 +11,34 @@ interface ResultHint {
   tag: boolean;
 }
 
+enum TypeState {
+  hp = 'hp',
+  armor = 'armor',
+  attackdamage = 'attackdamage',
+  attackspeed = 'attackspeed',
+  result = 'result',
+  tag = 'tag',
+}
+
+enum ResultType {
+  down = '↓',
+  up = '↑',
+  eq = '=',
+}
+
+enum ResultCase {
+  bigger = 'bigger',
+  smaller = 'smaller',
+  equal = 'equal',
+}
+
+interface ResultItem {
+  key: string;
+  correct: boolean;
+  icon: ResultType;
+  label: string;
+}
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -22,6 +50,38 @@ export class GameComponent implements OnInit {
   public champions: ChampionEntity[] = [];
   public championSelected!: ChampionEntity;
   public result!: ResultHint;
+
+  private namesKeys = {
+    armor: 'Armor',
+    hp: 'HP',
+    attackdamage: 'Atk Dmg',
+    attackspeed: 'Atk Speed',
+    result: 'result',
+    tag: 'tag',
+  };
+
+  private icons = {
+    bigger: ResultType.up,
+    smaller: ResultType.down,
+    equal: ResultType.eq,
+  };
+
+  formatValues(): ResultItem[] {
+    const resultFormated: ResultItem[] = [];
+
+    Object.keys(this.result).forEach((resultItem) => {
+      const resultValue = this.result[resultItem as TypeState];
+      if (typeof resultValue !== 'boolean') {
+        resultFormated.push({
+          key: resultItem,
+          correct: resultValue === 'equal',
+          icon: this.icons[resultValue as ResultCase],
+          label: this.namesKeys[resultItem as TypeState],
+        });
+      }
+    });
+    return resultFormated;
+  }
 
   async hint() {
     this.result = await this.championController.hint(this.championSelected);
