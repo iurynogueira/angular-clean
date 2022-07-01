@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import ChampionController from 'src/app/controller/ChampionController';
 import { ChampionEntity } from 'src/app/domain/entities/champion/champion-entity';
-import HintChampion from 'src/app/domain/usecases/HintChampion';
 
 @Component({
   selector: 'app-game',

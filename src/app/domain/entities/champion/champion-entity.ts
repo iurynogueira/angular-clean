@@ -47,7 +47,7 @@ export class ChampionEntity extends DomainEntity {
     if (stateOtherChampion === this.stats[statsKey]) {
       return CompareState.Equal;
     }
-    if (stateOtherChampion > this.stats[statsKey]) {
+    if (stateOtherChampion < this.stats[statsKey]) {
       return CompareState.Smaller;
     }
     return CompareState.Bigger;

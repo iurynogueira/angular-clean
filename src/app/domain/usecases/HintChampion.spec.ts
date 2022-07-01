@@ -41,10 +41,10 @@ describe('HintChampion', () => {
   it('should return failure when the champions its not equal', async () => {
     expect(await execute(championMock())).toEqual({
       result: false,
-      armor: CompareState.Bigger,
+      armor: CompareState.Smaller,
       attackdamage: CompareState.Equal,
-      attackspeed: CompareState.Bigger,
-      hp: CompareState.Bigger,
+      attackspeed: CompareState.Smaller,
+      hp: CompareState.Smaller,
       tag: false,
     });
   });
