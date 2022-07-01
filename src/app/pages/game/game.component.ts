@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import ChampionController from 'src/app/controller/ChampionController';
 import { ChampionEntity } from 'src/app/domain/entities/champion/champion-entity';
 
+interface ResultHint {
+  result: boolean;
+  armor: string;
+  attackdamage: string;
+  attackspeed: string;
+  hp: string;
+  tag: boolean;
+}
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -12,10 +21,10 @@ export class GameComponent implements OnInit {
 
   public champions: ChampionEntity[] = [];
   public championSelected!: ChampionEntity;
+  public result!: ResultHint;
 
   async hint() {
-    const result = await this.championController.hint(this.championSelected);
-    console.log('result ->', result);
+    this.result = await this.championController.hint(this.championSelected);
   }
 
   async ngOnInit() {

@@ -1,29 +1,30 @@
-<!-- <div style="border: 1px solid red; text-align: center; padding: 60px">
-  <div style="display: flex; flex-direction: column; gap: 20px">
-    <div>
-      <span>Selecione o campeao</span>
-    </div>
-    <div>
-      <select name="campeao" id="campeao" [(ngModel)]="championSelected">
-        <option [ngValue]="champion" *ngFor="let champion of champions">
-          {{ champion.name }}
-        </option>
-      </select>
-    </div>
-    <div>
-      <button (click)="hint()">Chutar!</button>
-    </div>
-  </div>
-</div> -->
-
 <div class="container">
-  <h1>Selecione o campeão</h1>
-  <div>
+  <h2>Tente adivinhar o campeão selecionando um capeão abaixo.</h2>
+  <div style="text-align: center">
     <select name="campeao" id="campeao" [(ngModel)]="championSelected">
       <option [ngValue]="champion" *ngFor="let champion of champions">
         {{ champion.name }}
       </option>
     </select>
+
+    <div class="result-ctn" *ngIf="result">
+      <div>
+        <span>{{ result.armor }}</span>
+        <h2>Armor</h2>
+      </div>
+      <div>
+        <span>{{ result.hp }}</span>
+        <h2>HP</h2>
+      </div>
+      <div>
+        <span>{{ result.attackdamage }}</span>
+        <h2>Atk Dmg</h2>
+      </div>
+      <div>
+        <span>{{ result.attackspeed }}</span>
+        <h2>Atk Speed</h2>
+      </div>
+    </div>
   </div>
   <div>
     <button type="button" (click)="hint()">Chutar!</button>

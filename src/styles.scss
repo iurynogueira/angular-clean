@@ -54,22 +54,24 @@ strong {
 
   h1 {
     font-weight: 600;
-    font-size: 4rem;
+    font-size: 3rem;
     line-height: 5rem;
     text-align: center;
 
     color: #fff1fe;
   }
 
-  button {
-    width: 20rem;
-    height: 6rem;
+  h2 {
+    color: #fff1fe;
+  }
 
+  button {
+    padding: 10px 20px;
     background: #24e6ee;
     border: none;
-    border-radius: 1rem;
+    border-radius: 0.3rem;
 
-    font-size: 3rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: #ffffff;
 
