@@ -24,6 +24,8 @@ enum ResultType {
   down = '↓',
   up = '↑',
   eq = '=',
+  wrong = 'x',
+  correct = '✓',
 }
 
 enum ResultCase {
@@ -63,7 +65,7 @@ export class GameComponent implements OnInit {
   private icons = {
     bigger: ResultType.up,
     smaller: ResultType.down,
-    equal: ResultType.eq,
+    equal: ResultType.correct,
   };
 
   formatValues(): ResultItem[] {
@@ -77,6 +79,15 @@ export class GameComponent implements OnInit {
           correct: resultValue === 'equal',
           icon: this.icons[resultValue as ResultCase],
           label: this.namesKeys[resultItem as TypeState],
+        });
+      }
+
+      if (resultItem === 'tag') {
+        resultFormated.push({
+          key: resultItem,
+          correct: resultValue as boolean,
+          icon: resultValue ? ResultType.correct : ResultType.wrong,
+          label: 'Type',
         });
       }
     });

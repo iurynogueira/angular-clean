@@ -24,6 +24,8 @@
     </div>
   </div>
   <div>
-    <button type="button" (click)="hint()">Chutar!</button>
+    <button type="button" (click)="hint()" *ngIf="!result || !result.result">
+      Chutar!
+    </button>
   </div>
 </div>
