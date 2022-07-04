@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Tente adivinhar o campeão selecionando um campeão abaixo.</h2>
+  <div style="text-align: center">
+    <select name="campeao" id="campeao" [(ngModel)]="championSelected">
+      <option [ngValue]="champion" *ngFor="let champion of champions">
+        {{ champion.name }}
+      </option>
+    </select>
+
+    <div class="result-ctn" *ngIf="result">
+      <div class="result-item" *ngFor="let item of formatValues()">
+        <div
+          class="info-result"
+          [ngClass]="{ error: !item.correct, success: item.correct }"
+        >
+          <span>{{ item.icon }}</span>
+        </div>
+        <h2>{{ item.label }}</h2>
+      </div>
+    </div>
+
+    <div class="result-ctn" *ngIf="result && result.result">
+      <h2>Parabéns, você acertou!</h2>
+    </div>
+  </div>
+  <div>
+    <button type="button" (click)="hint()" *ngIf="!result || !result.result">
+      Chutar!
+    </button>
+  </div>
+</div>

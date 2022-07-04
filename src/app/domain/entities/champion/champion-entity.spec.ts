@@ -54,10 +54,10 @@ describe('Champion Entity', () => {
     });
 
     expect(sutEzreal().compareWith(volibear)).toEqual({
-      armor: 'smaller',
+      armor: 'bigger',
       attackdamage: 'equal',
       attackspeed: 'equal',
-      hp: 'bigger',
+      hp: 'smaller',
       tag: false,
     });
   });
@@ -76,10 +76,10 @@ describe('Champion Entity', () => {
     });
 
     expect(sutEzreal().compareWith(annie)).toEqual({
-      armor: 'bigger',
+      armor: 'smaller',
       attackdamage: 'equal',
       attackspeed: 'equal',
-      hp: 'bigger',
+      hp: 'smaller',
       tag: true,
     });
   });
